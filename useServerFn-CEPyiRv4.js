@@ -1,1 +1,30 @@
-import{i as a}from"./jsx-runtime-RK1IuXQa.js";import{t as s}from"./react-D8T8de5F.js";import{t as e}from"./redirect-jw4C_q2w.js";import{t as c}from"./useRouter-DuDv8g77.js";var n=a(s(),1);function _(o){const t=c();return n.useCallback(async(...i)=>{try{const r=await o(...i);if(e(r))throw r;return r}catch(r){if(e(r))return r.options._fromLocation=t.stores.location.get(),t.navigate(t.resolveRedirect(r).options);throw r}},[t,o])}export{_ as t};
+import {
+    i as a
+} from "./jsx-runtime-RK1IuXQa.js";
+import {
+    t as s
+} from "./react-D8T8de5F.js";
+import {
+    t as e
+} from "./redirect-jw4C_q2w.js";
+import {
+    t as c
+} from "./useRouter-DuDv8g77.js";
+var n = a(s(), 1);
+
+function _(o) {
+    const t = c();
+    return n.useCallback(async (...i) => {
+        try {
+            const r = await o(...i);
+            if (e(r)) throw r;
+            return r
+        } catch (r) {
+            if (e(r)) return r.options._fromLocation = t.stores.location.get(), t.navigate(t.resolveRedirect(r).options);
+            throw r
+        }
+    }, [t, o])
+}
+export {
+    _ as t
+};
