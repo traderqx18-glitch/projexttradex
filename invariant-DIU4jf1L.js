@@ -1,1 +1,6 @@
-function n(){throw new Error("Invariant failed")}export{n as t};
+function n() {
+    throw new Error("Invariant failed")
+}
+export {
+    n as t
+};

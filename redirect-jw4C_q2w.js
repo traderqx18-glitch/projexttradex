@@ -1,1 +1,33 @@
-function i(e={}){if(e.isNotFound=!0,e.throw)throw e;return e}function u(e){return e?.isNotFound===!0}function t(e){if(e.statusCode=e.statusCode||e.code||307,!e._builtLocation&&!e.reloadDocument&&typeof e.href=="string")try{new URL(e.href),e.reloadDocument=!0}catch{}const n=new Headers(e.headers);e.href&&n.get("Location")===null&&n.set("Location",e.href);const r=new Response(null,{status:e.statusCode,headers:n});if(r.options=e,e.throw)throw r;return r}function a(e){return e instanceof Response&&!!e.options}function o(e){if(e!==null&&typeof e=="object"&&e.isSerializedRedirect)return t(e)}export{i as a,u as i,o as n,t as r,a as t};
+function i(e = {}) {
+    if (e.isNotFound = !0, e.throw) throw e;
+    return e
+}
+
+function u(e) {
+    return e ? .isNotFound === !0
+}
+
+function t(e) {
+    if (e.statusCode = e.statusCode || e.code || 307, !e._builtLocation && !e.reloadDocument && typeof e.href == "string") try {
+        new URL(e.href), e.reloadDocument = !0
+    } catch {}
+    const n = new Headers(e.headers);
+    e.href && n.get("Location") === null && n.set("Location", e.href);
+    const r = new Response(null, {
+        status: e.statusCode,
+        headers: n
+    });
+    if (r.options = e, e.throw) throw r;
+    return r
+}
+
+function a(e) {
+    return e instanceof Response && !!e.options
+}
+
+function o(e) {
+    if (e !== null && typeof e == "object" && e.isSerializedRedirect) return t(e)
+}
+export {
+    i as a, u as i, o as n, t as r, a as t
+};

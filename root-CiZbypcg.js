@@ -1,1 +1,4 @@
-var o="__root__";export{o as t};
+var o = "__root__";
+export {
+    o as t
+};

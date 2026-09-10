@@ -1,0 +1,45 @@
+import {
+    r as u
+} from "./portal-client-CV1s4BnW.js";
+import {
+    gn as i
+} from "./index-dGs9i_Jo.js";
+import {
+    n as l
+} from "./trader-id-CFeqFSYT.js";
+import {
+    t as f
+} from "./use-auth-a-YuX6oV.js";
+
+function p() {
+    const {
+        user: a
+    } = f(), e = a ? .user_metadata ? ? {}, r = e.source === "funded_challenge" || !!e.funded_owner_id || !!(e.challenge_slug && e.account_number) || !!l(e, a ? .email), {
+        data: o,
+        isLoading: s
+    } = i({
+        queryKey: ["is-funded-account", a ? .id, r],
+        enabled: !!a ? .id && !r,
+        staleTime: 6e4,
+        retry: 1,
+        queryFn: async () => {
+            const {
+                data: d
+            } = await u.auth.getUser(), t = d.user ? .user_metadata ? ? {};
+            if (t.source === "funded_challenge" || t.funded_owner_id || t.challenge_slug && t.account_number) return !0;
+            const {
+                data: c,
+                error: n
+            } = await u.rpc("is_current_funded_trading_account");
+            if (n) throw n;
+            return !!c
+        }
+    });
+    return {
+        isFunded: r || !!o,
+        isLoading: !r && s
+    }
+}
+export {
+    p as t
+};

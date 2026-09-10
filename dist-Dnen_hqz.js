@@ -1,1 +1,310 @@
-import{i as he,t as ue}from"./jsx-runtime-RK1IuXQa.js";import{t as ge}from"./react-D8T8de5F.js";import{n as W}from"./dist-BGr8f1uC.js";import{a as C,c as we,i as me,r as b}from"./dist-iN9wdwzB.js";import{a as xe,c as ve,i as ye,l as Pe,n as Ae,o as Se,r as be,s as Ce,t as _e}from"./floating-ui.react-dom-DIiFlcad.js";var d=he(ge(),1),l=ue(),Re="Arrow",M=d.forwardRef((e,i)=>{const{children:t,width:n=10,height:o=5,...r}=e;return(0,l.jsx)(C.svg,{...r,ref:i,width:n,height:o,viewBox:"0 0 30 10",preserveAspectRatio:"none",children:e.asChild?t:(0,l.jsx)("polygon",{points:"0,0 30,0 15,10"})})});M.displayName=Re;var Oe=M;function ze(e){const[i,t]=d.useState(void 0);return b(()=>{if(e){t({width:e.offsetWidth,height:e.offsetHeight});const n=new ResizeObserver(o=>{if(!Array.isArray(o)||!o.length)return;const r=o[0];let c,s;if("borderBoxSize"in r){const a=r.borderBoxSize,p=Array.isArray(a)?a[0]:a;c=p.inlineSize,s=p.blockSize}else c=e.offsetWidth,s=e.offsetHeight;t({width:c,height:s})});return n.observe(e,{box:"border-box"}),()=>n.unobserve(e)}else t(void 0)},[e]),i}var _="Popper",[B,ke]=we(_),[Ee,I]=B(_),Y=e=>{const{__scopePopper:i,children:t}=e,[n,o]=d.useState(null);return(0,l.jsx)(Ee,{scope:i,anchor:n,onAnchorChange:o,children:t})};Y.displayName=_;var X="PopperAnchor",k=d.forwardRef((e,i)=>{const{__scopePopper:t,virtualRef:n,...o}=e,r=I(X,t),c=d.useRef(null),s=W(i,c),a=d.useRef(null);return d.useEffect(()=>{const p=a.current;a.current=n?.current||c.current,p!==a.current&&r.onAnchorChange(a.current)}),n?null:(0,l.jsx)(C.div,{...o,ref:s})});k.displayName=X;var R="PopperContent",[Ne,$e]=B(R),D=d.forwardRef((e,i)=>{const{__scopePopper:t,side:n="bottom",sideOffset:o=0,align:r="center",alignOffset:c=0,arrowPadding:s=0,avoidCollisions:a=!0,collisionBoundary:p=[],collisionPadding:f=0,sticky:m="partial",hideWhenDetached:x=!1,updatePositionStrategy:h="optimized",onPlaced:u,...O}=e,Z=I(R,t),[A,L]=d.useState(null),U=W(i,w=>L(w)),[S,G]=d.useState(null),z=ze(S),J=z?.width??0,E=z?.height??0,K=n+(r!=="center"?"-"+r:""),Q=typeof f=="number"?f:{top:0,right:0,bottom:0,left:0,...f},N=Array.isArray(p)?p:[p],V=N.length>0,v={padding:Q,boundary:N.filter(He),altBoundary:V},{refs:ee,floatingStyles:$,placement:re,isPositioned:y,middlewareData:g}=ve({strategy:"fixed",placement:K,whileElementsMounted:(...w)=>Pe(...w,{animationFrame:h==="always"}),elements:{reference:Z.anchor},middleware:[xe({mainAxis:o+E,alignmentAxis:c}),a&&Se({mainAxis:!0,crossAxis:!1,limiter:m==="partial"?ye():void 0,...v}),a&&Ae({...v}),Ce({...v,apply:({elements:w,rects:ce,availableWidth:de,availableHeight:pe})=>{const{width:le,height:fe}=ce.reference,P=w.floating.style;P.setProperty("--radix-popper-available-width",`${de}px`),P.setProperty("--radix-popper-available-height",`${pe}px`),P.setProperty("--radix-popper-anchor-width",`${le}px`),P.setProperty("--radix-popper-anchor-height",`${fe}px`)}}),S&&_e({element:S,padding:s}),We({arrowWidth:J,arrowHeight:E}),x&&be({strategy:"referenceHidden",...v})]}),[j,te]=q(re),H=me(u);b(()=>{y&&H?.()},[y,H]);const oe=g.arrow?.x,ne=g.arrow?.y,ae=g.arrow?.centerOffset!==0,[ie,se]=d.useState();return b(()=>{A&&se(window.getComputedStyle(A).zIndex)},[A]),(0,l.jsx)("div",{ref:ee.setFloating,"data-radix-popper-content-wrapper":"",style:{...$,transform:y?$.transform:"translate(0, -200%)",minWidth:"max-content",zIndex:ie,"--radix-popper-transform-origin":[g.transformOrigin?.x,g.transformOrigin?.y].join(" "),...g.hide?.referenceHidden&&{visibility:"hidden",pointerEvents:"none"}},dir:e.dir,children:(0,l.jsx)(Ne,{scope:t,placedSide:j,onArrowChange:G,arrowX:oe,arrowY:ne,shouldHideArrow:ae,children:(0,l.jsx)(C.div,{"data-side":j,"data-align":te,...O,ref:U,style:{...O.style,animation:y?void 0:"none"}})})})});D.displayName=R;var F="PopperArrow",je={top:"bottom",right:"left",bottom:"top",left:"right"},T=d.forwardRef(function(i,t){const{__scopePopper:n,...o}=i,r=$e(F,n),c=je[r.placedSide];return(0,l.jsx)("span",{ref:r.onArrowChange,style:{position:"absolute",left:r.arrowX,top:r.arrowY,[c]:0,transformOrigin:{top:"",right:"0 0",bottom:"center 0",left:"100% 0"}[r.placedSide],transform:{top:"translateY(100%)",right:"translateY(50%) rotate(90deg) translateX(-50%)",bottom:"rotate(180deg)",left:"translateY(50%) rotate(-90deg) translateX(50%)"}[r.placedSide],visibility:r.shouldHideArrow?"hidden":void 0},children:(0,l.jsx)(Oe,{...o,ref:t,style:{...o.style,display:"block"}})})});T.displayName=F;function He(e){return e!==null}var We=e=>({name:"transformOrigin",options:e,fn(i){const{placement:t,rects:n,middlewareData:o}=i,r=o.arrow?.centerOffset!==0,c=r?0:e.arrowWidth,s=r?0:e.arrowHeight,[a,p]=q(t),f={start:"0%",center:"50%",end:"100%"}[p],m=(o.arrow?.x??0)+c/2,x=(o.arrow?.y??0)+s/2;let h="",u="";return a==="bottom"?(h=r?f:`${m}px`,u=`${-s}px`):a==="top"?(h=r?f:`${m}px`,u=`${n.floating.height+s}px`):a==="right"?(h=`${-s}px`,u=r?f:`${x}px`):a==="left"&&(h=`${n.floating.width+s}px`,u=r?f:`${x}px`),{data:{x:h,y:u}}}});function q(e){const[i,t="center"]=e.split("-");return[i,t]}var De=Y,Fe=k,Te=D,qe=T;export{ke as a,De as i,qe as n,ze as o,Te as r,Fe as t};
+import {
+    i as he,
+    t as ue
+} from "./jsx-runtime-RK1IuXQa.js";
+import {
+    t as ge
+} from "./react-D8T8de5F.js";
+import {
+    n as W
+} from "./dist-BGr8f1uC.js";
+import {
+    a as C,
+    c as we,
+    i as me,
+    r as b
+} from "./dist-iN9wdwzB.js";
+import {
+    a as xe,
+    c as ve,
+    i as ye,
+    l as Pe,
+    n as Ae,
+    o as Se,
+    r as be,
+    s as Ce,
+    t as _e
+} from "./floating-ui.react-dom-DIiFlcad.js";
+var d = he(ge(), 1),
+    l = ue(),
+    Re = "Arrow",
+    M = d.forwardRef((e, i) => {
+        const {
+            children: t,
+            width: n = 10,
+            height: o = 5,
+            ...r
+        } = e;
+        return (0, l.jsx)(C.svg, { ...r,
+            ref: i,
+            width: n,
+            height: o,
+            viewBox: "0 0 30 10",
+            preserveAspectRatio: "none",
+            children: e.asChild ? t : (0, l.jsx)("polygon", {
+                points: "0,0 30,0 15,10"
+            })
+        })
+    });
+M.displayName = Re;
+var Oe = M;
+
+function ze(e) {
+    const [i, t] = d.useState(void 0);
+    return b(() => {
+        if (e) {
+            t({
+                width: e.offsetWidth,
+                height: e.offsetHeight
+            });
+            const n = new ResizeObserver(o => {
+                if (!Array.isArray(o) || !o.length) return;
+                const r = o[0];
+                let c, s;
+                if ("borderBoxSize" in r) {
+                    const a = r.borderBoxSize,
+                        p = Array.isArray(a) ? a[0] : a;
+                    c = p.inlineSize, s = p.blockSize
+                } else c = e.offsetWidth, s = e.offsetHeight;
+                t({
+                    width: c,
+                    height: s
+                })
+            });
+            return n.observe(e, {
+                box: "border-box"
+            }), () => n.unobserve(e)
+        } else t(void 0)
+    }, [e]), i
+}
+var _ = "Popper",
+    [B, ke] = we(_),
+    [Ee, I] = B(_),
+    Y = e => {
+        const {
+            __scopePopper: i,
+            children: t
+        } = e, [n, o] = d.useState(null);
+        return (0, l.jsx)(Ee, {
+            scope: i,
+            anchor: n,
+            onAnchorChange: o,
+            children: t
+        })
+    };
+Y.displayName = _;
+var X = "PopperAnchor",
+    k = d.forwardRef((e, i) => {
+        const {
+            __scopePopper: t,
+            virtualRef: n,
+            ...o
+        } = e, r = I(X, t), c = d.useRef(null), s = W(i, c), a = d.useRef(null);
+        return d.useEffect(() => {
+            const p = a.current;
+            a.current = n ? .current || c.current, p !== a.current && r.onAnchorChange(a.current)
+        }), n ? null : (0, l.jsx)(C.div, { ...o,
+            ref: s
+        })
+    });
+k.displayName = X;
+var R = "PopperContent",
+    [Ne, $e] = B(R),
+    D = d.forwardRef((e, i) => {
+        const {
+            __scopePopper: t,
+            side: n = "bottom",
+            sideOffset: o = 0,
+            align: r = "center",
+            alignOffset: c = 0,
+            arrowPadding: s = 0,
+            avoidCollisions: a = !0,
+            collisionBoundary: p = [],
+            collisionPadding: f = 0,
+            sticky: m = "partial",
+            hideWhenDetached: x = !1,
+            updatePositionStrategy: h = "optimized",
+            onPlaced: u,
+            ...O
+        } = e, Z = I(R, t), [A, L] = d.useState(null), U = W(i, w => L(w)), [S, G] = d.useState(null), z = ze(S), J = z ? .width ? ? 0, E = z ? .height ? ? 0, K = n + (r !== "center" ? "-" + r : ""), Q = typeof f == "number" ? f : {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            ...f
+        }, N = Array.isArray(p) ? p : [p], V = N.length > 0, v = {
+            padding: Q,
+            boundary: N.filter(He),
+            altBoundary: V
+        }, {
+            refs: ee,
+            floatingStyles: $,
+            placement: re,
+            isPositioned: y,
+            middlewareData: g
+        } = ve({
+            strategy: "fixed",
+            placement: K,
+            whileElementsMounted: (...w) => Pe(...w, {
+                animationFrame: h === "always"
+            }),
+            elements: {
+                reference: Z.anchor
+            },
+            middleware: [xe({
+                mainAxis: o + E,
+                alignmentAxis: c
+            }), a && Se({
+                mainAxis: !0,
+                crossAxis: !1,
+                limiter: m === "partial" ? ye() : void 0,
+                ...v
+            }), a && Ae({ ...v
+            }), Ce({ ...v,
+                apply: ({
+                    elements: w,
+                    rects: ce,
+                    availableWidth: de,
+                    availableHeight: pe
+                }) => {
+                    const {
+                        width: le,
+                        height: fe
+                    } = ce.reference, P = w.floating.style;
+                    P.setProperty("--radix-popper-available-width", `${de}px`), P.setProperty("--radix-popper-available-height", `${pe}px`), P.setProperty("--radix-popper-anchor-width", `${le}px`), P.setProperty("--radix-popper-anchor-height", `${fe}px`)
+                }
+            }), S && _e({
+                element: S,
+                padding: s
+            }), We({
+                arrowWidth: J,
+                arrowHeight: E
+            }), x && be({
+                strategy: "referenceHidden",
+                ...v
+            })]
+        }), [j, te] = q(re), H = me(u);
+        b(() => {
+            y && H ? .()
+        }, [y, H]);
+        const oe = g.arrow ? .x,
+            ne = g.arrow ? .y,
+            ae = g.arrow ? .centerOffset !== 0,
+            [ie, se] = d.useState();
+        return b(() => {
+            A && se(window.getComputedStyle(A).zIndex)
+        }, [A]), (0, l.jsx)("div", {
+            ref: ee.setFloating,
+            "data-radix-popper-content-wrapper": "",
+            style: { ...$,
+                transform: y ? $.transform : "translate(0, -200%)",
+                minWidth: "max-content",
+                zIndex: ie,
+                "--radix-popper-transform-origin": [g.transformOrigin ? .x, g.transformOrigin ? .y].join(" "),
+                ...g.hide ? .referenceHidden && {
+                    visibility: "hidden",
+                    pointerEvents: "none"
+                }
+            },
+            dir: e.dir,
+            children: (0, l.jsx)(Ne, {
+                scope: t,
+                placedSide: j,
+                onArrowChange: G,
+                arrowX: oe,
+                arrowY: ne,
+                shouldHideArrow: ae,
+                children: (0, l.jsx)(C.div, {
+                    "data-side": j,
+                    "data-align": te,
+                    ...O,
+                    ref: U,
+                    style: { ...O.style,
+                        animation: y ? void 0 : "none"
+                    }
+                })
+            })
+        })
+    });
+D.displayName = R;
+var F = "PopperArrow",
+    je = {
+        top: "bottom",
+        right: "left",
+        bottom: "top",
+        left: "right"
+    },
+    T = d.forwardRef(function(i, t) {
+        const {
+            __scopePopper: n,
+            ...o
+        } = i, r = $e(F, n), c = je[r.placedSide];
+        return (0, l.jsx)("span", {
+            ref: r.onArrowChange,
+            style: {
+                position: "absolute",
+                left: r.arrowX,
+                top: r.arrowY,
+                [c]: 0,
+                transformOrigin: {
+                    top: "",
+                    right: "0 0",
+                    bottom: "center 0",
+                    left: "100% 0"
+                }[r.placedSide],
+                transform: {
+                    top: "translateY(100%)",
+                    right: "translateY(50%) rotate(90deg) translateX(-50%)",
+                    bottom: "rotate(180deg)",
+                    left: "translateY(50%) rotate(-90deg) translateX(50%)"
+                }[r.placedSide],
+                visibility: r.shouldHideArrow ? "hidden" : void 0
+            },
+            children: (0, l.jsx)(Oe, { ...o,
+                ref: t,
+                style: { ...o.style,
+                    display: "block"
+                }
+            })
+        })
+    });
+T.displayName = F;
+
+function He(e) {
+    return e !== null
+}
+var We = e => ({
+    name: "transformOrigin",
+    options: e,
+    fn(i) {
+        const {
+            placement: t,
+            rects: n,
+            middlewareData: o
+        } = i, r = o.arrow ? .centerOffset !== 0, c = r ? 0 : e.arrowWidth, s = r ? 0 : e.arrowHeight, [a, p] = q(t), f = {
+            start: "0%",
+            center: "50%",
+            end: "100%"
+        }[p], m = (o.arrow ? .x ? ? 0) + c / 2, x = (o.arrow ? .y ? ? 0) + s / 2;
+        let h = "",
+            u = "";
+        return a === "bottom" ? (h = r ? f : `${m}px`, u = `${-s}px`) : a === "top" ? (h = r ? f : `${m}px`, u = `${n.floating.height+s}px`) : a === "right" ? (h = `${-s}px`, u = r ? f : `${x}px`) : a === "left" && (h = `${n.floating.width+s}px`, u = r ? f : `${x}px`), {
+            data: {
+                x: h,
+                y: u
+            }
+        }
+    }
+});
+
+function q(e) {
+    const [i, t = "center"] = e.split("-");
+    return [i, t]
+}
+var De = Y,
+    Fe = k,
+    Te = D,
+    qe = T;
+export {
+    ke as a, De as i, qe as n, ze as o, Te as r, Fe as t
+};
