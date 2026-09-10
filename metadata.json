@@ -1,0 +1,8 @@
+{
+  "name": "Okay Broker",
+  "description": "Trade 30+ OTC markets with payouts up to 95%, a free $10,000 demo, and $100K funded accounts on Okay Broker.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
