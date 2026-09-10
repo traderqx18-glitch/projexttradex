@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+Allow: /affiliate
+Allow: /affiliate/signin
+Allow: /affiliate/signup
+Allow: /affiliate/login
+Allow: /affiliate/forgot
+Allow: /funded
+Allow: /funded/
+Disallow: /admin
+Disallow: /superadmin
+Disallow: /affiliate/
+Disallow: /trade
+Disallow: /wallet
+Disallow: /history
+Disallow: /help
+Disallow: /leaderboard
+Disallow: /api/
+Disallow: /.mcp/
+Disallow: /.well-known/
+Disallow: /.lovable/
+Disallow: /mcp
+Disallow: /reset-password
+Disallow: /verify-otp
+
+Sitemap: https://okaybroker.com/sitemap.xml
