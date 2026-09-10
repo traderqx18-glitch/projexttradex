@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-RK1IuXQa.js";import{Bt as o}from"./index-Bx-7JFn2.js";import{t as i}from"./AuthCard-BnWUCyx0.js";var n=e();function u(){const{ref:r,next:t}=o.useSearch();return(0,n.jsx)(i,{initialTab:"signup",ref:r,next:t})}export{u as component};

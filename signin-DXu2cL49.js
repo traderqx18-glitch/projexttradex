@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-RK1IuXQa.js";import{zt as i}from"./index-Bx-7JFn2.js";import{t as o}from"./AuthCard-BnWUCyx0.js";var n=e();function u(){const{ref:r,next:t}=i.useSearch();return(0,n.jsx)(o,{initialTab:"signin",ref:r,next:t})}export{u as component};
