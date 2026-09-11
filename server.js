@@ -53,9 +53,70 @@ app.use('/assets', (req, res, next) => {
   next();
 });
 
+// Helper to serve HTML files with interactive options script injected
+function sendHtmlFile(res, filePath) {
+  try {
+    let content = fs.readFileSync(filePath, 'utf8');
+    if (!content.includes('interactive-options.js')) {
+      content = content.replace('</body>', '<script src="/interactive-options.js"></script></body>');
+    }
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send(content);
+  } catch (err) {
+    res.status(500).send('Error loading page');
+  }
+}
+
+// Serve interactive-options.js directly
+app.get('/interactive-options.js', (req, res) => {
+  const filePath = path.join(__dirname, 'interactive-options.js');
+  if (fs.existsSync(filePath)) {
+    res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+    return res.sendFile(filePath);
+  }
+  res.status(404).end();
+});
+
+// Serve _serverFn endpoints from SSR files
+app.all('/_serverFn/:fnId', (req, res) => {
+  const fnId = (req.params.fnId || '').replace(/[^a-zA-Z0-9_-]/g, '');
+  const candidate = path.join(__dirname, '_serverFn', `${fnId}.html`);
+  if (fs.existsSync(candidate)) {
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    return res.sendFile(candidate);
+  }
+  res.json({ result: null, error: null });
+});
+
+// Serve local Supabase endpoints from exported data
+app.use(['/rest/v1', '/auth/v1', '/storage/v1'], (req, res, next) => {
+  const subPath = req.baseUrl + req.path;
+  const basePath = path.join(__dirname, 'skqfapqbqbrbuageiyea.supabase.co');
+  const candidateJson = path.join(basePath, `${subPath}.json`);
+  const candidateHtml = path.join(basePath, `${subPath}.html`);
+  const candidateDirect = path.join(basePath, subPath);
+
+  if (fs.existsSync(candidateJson)) {
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    return res.sendFile(candidateJson);
+  }
+  if (fs.existsSync(candidateHtml)) {
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    return res.sendFile(candidateHtml);
+  }
+  if (fs.existsSync(candidateDirect) && fs.statSync(candidateDirect).isFile()) {
+    const ext = path.extname(candidateDirect).toLowerCase();
+    if (MIME_TYPES[ext]) {
+      res.setHeader('Content-Type', MIME_TYPES[ext]);
+    }
+    return res.sendFile(candidateDirect);
+  }
+  next();
+});
+
 // Handle form submissions on signin / signup gracefully
 app.post(['/signin', '/signup', '/login', '/funded/signin', '/funded/signup'], (req, res) => {
-  res.redirect('/funded/pricing');
+  res.redirect('/trade');
 });
 
 // Static files handler for GitHub repository routes
@@ -67,12 +128,15 @@ app.use((req, res, next) => {
   const cleanPath = decodeURIComponent(req.path).replace(/^\/+/, '');
 
   if (!cleanPath) {
-    return res.sendFile(path.join(__dirname, 'index.html'));
+    return sendHtmlFile(res, path.join(__dirname, 'index.html'));
   }
 
-  // If trade route is requested, redirect to funded pricing page from repo
+  // Trade terminal route
   if (cleanPath === 'trade' || cleanPath === 'trading' || cleanPath === 'platform') {
-    return res.redirect('/funded/pricing');
+    const tradeHtml = path.join(__dirname, 'trade.html');
+    if (fs.existsSync(tradeHtml)) {
+      return sendHtmlFile(res, tradeHtml);
+    }
   }
 
   const directFile = path.join(__dirname, cleanPath);
@@ -81,7 +145,7 @@ app.use((req, res, next) => {
   if (fs.existsSync(directFile) && fs.statSync(directFile).isFile()) {
     const ext = path.extname(directFile).toLowerCase();
     if (!ext || ext === '.html') {
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      return sendHtmlFile(res, directFile);
     } else if (MIME_TYPES[ext]) {
       res.setHeader('Content-Type', MIME_TYPES[ext]);
     }
@@ -91,24 +155,21 @@ app.use((req, res, next) => {
   // 2. Direct existing file with .html extension
   const htmlFile = path.join(__dirname, `${cleanPath}.html`);
   if (fs.existsSync(htmlFile) && fs.statSync(htmlFile).isFile()) {
-    res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    return res.sendFile(htmlFile);
+    return sendHtmlFile(res, htmlFile);
   }
 
   // 3. Nested index / directory check (e.g. `funded` -> `funded/pricing` or `funded/rules`)
   if (cleanPath === 'funded') {
     const fundedPricing = path.join(__dirname, 'funded', 'pricing');
     if (fs.existsSync(fundedPricing)) {
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      return res.sendFile(fundedPricing);
+      return sendHtmlFile(res, fundedPricing);
     }
   }
 
   if (cleanPath === 'affiliate') {
     const affiliateSignup = path.join(__dirname, 'affiliate', 'signup');
     if (fs.existsSync(affiliateSignup)) {
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      return res.sendFile(affiliateSignup);
+      return sendHtmlFile(res, affiliateSignup);
     }
   }
 
@@ -117,8 +178,7 @@ app.use((req, res, next) => {
 
 // Fallback to index.html
 app.use((req, res) => {
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.sendFile(path.join(__dirname, 'index.html'));
+  sendHtmlFile(res, path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, HOST, () => {
