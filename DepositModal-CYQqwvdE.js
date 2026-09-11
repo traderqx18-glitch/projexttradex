@@ -1474,7 +1474,7 @@ function re({
             alt: d.alt,
             loading: "lazy",
             className: "h-full w-full object-contain"
-        }) : r ? .badge ? ? "◆"
+        }) : r ?.badge ?? "◆"
     })
 }
 var Pr = [{
@@ -1657,11 +1657,11 @@ function $r({
 }) {
     const {
         user: i
-    } = Ae(), [l, c] = (0, $.useState)(null), f = Te(), T = te(Se), b = te(Be), [m, h] = (0, $.useState)(o === "funded" ? String(r ? ? 100) : "100"), [j, S] = (0, $.useState)(!1), [u, A] = (0, $.useState)(null), [C, _] = (0, $.useState)(""), [P, M] = (0, $.useState)(!1), [x, E] = (0, $.useState)(null), [y, g] = (0, $.useState)(null), [N, p] = (0, $.useState)(""), [v, w] = (0, $.useState)(180), I = (0, $.useRef)(null), D = (0, $.useRef)(null), K = (0, $.useRef)(!1), ne = te(Pe), J = ve(), q = o === "funded" ? l : i ? .id ? ? null;
+    } = Ae(), [l, c] = (0, $.useState)(null), f = Te(), T = te(Se), b = te(Be), [m, h] = (0, $.useState)(o === "funded" ? String(r ?? 100) : "100"), [j, S] = (0, $.useState)(!1), [u, A] = (0, $.useState)(null), [C, _] = (0, $.useState)(""), [P, M] = (0, $.useState)(!1), [x, E] = (0, $.useState)(null), [y, g] = (0, $.useState)(null), [N, p] = (0, $.useState)(""), [v, w] = (0, $.useState)(180), I = (0, $.useRef)(null), D = (0, $.useRef)(null), K = (0, $.useRef)(!1), ne = te(Pe), J = ve(), q = o === "funded" ? l : i ?.id ?? null;
     (0, $.useEffect)(() => {
         o === "funded" && xe.auth.getUser().then(({
             data: k
-        }) => c(k.user ? .id ? ? null))
+        }) => c(k.user ?.id ?? null))
     }, [o]);
     const Q = () => {
         f.invalidateQueries({
@@ -1711,7 +1711,7 @@ function $r({
             try {
                 const k = await T({
                     data: {
-                        amount: o === "funded" ? Number(r ? ? F) : F,
+                        amount: o === "funded" ? Number(r ?? F) : F,
                         methodCode: a.code,
                         source: o,
                         fundedSlug: d,
@@ -1721,15 +1721,15 @@ function $r({
                 a.code, A({
                     requestId: k.requestId,
                     expectedAmount: k.expectedAmount,
-                    address: k.method.address ? ? "",
+                    address: k.method.address ?? "",
                     memo: k.method.memo,
                     expiresAt: k.expiresAt,
                     network: k.method.network,
                     label: k.method.label,
-                    qrCodeUrl: k.method.qr_code_url ? ? null
+                    qrCodeUrl: k.method.qr_code_url ?? null
                 })
             } catch (k) {
-                X.error(k ? .message ? ? "Failed to start checkout")
+                X.error(k ?.message ?? "Failed to start checkout")
             } finally {
                 S(!1)
             }
@@ -1758,7 +1758,7 @@ function $r({
                                     requestId: u.requestId
                                 }
                             });
-                            if (R ? .status === "confirmed") {
+                            if (R ?.status === "confirmed") {
                                 g("success"), p(o === "funded" ? "Payment confirmed — provisioning your account" : "Deposit credited to your account!"), Q(), window.setTimeout(() => {
                                     s(), J({
                                         to: o === "funded" ? "/funded/dashboard" : "/trade"
@@ -1766,7 +1766,7 @@ function $r({
                                 }, 3200);
                                 return
                             }
-                            if (R ? .status === "still_verifying") {
+                            if (R ?.status === "still_verifying") {
                                 g("processing"), p("Still verifying on-chain — this network can take a while. You can close this window; we'll credit your account automatically as soon as the payment confirms, and you'll see it under Pending payments.");
                                 return
                             }
@@ -1808,7 +1808,7 @@ function $r({
                         }
                         I.current = window.setTimeout(V, 2500)
                     } catch (R) {
-                        z(), g("failed"), p(R ? .message ? ? "Verification failed")
+                        z(), g("failed"), p(R ?.message ?? "Verification failed")
                     }
                 };
             V()
@@ -2141,7 +2141,7 @@ function $r({
                     children: "Challenge fee"
                 }), (0, n.jsxs)("div", {
                     className: "mt-1 text-2xl font-bold",
-                    children: ["$", Number(r ? ? F).toFixed(2)]
+                    children: ["$", Number(r ?? F).toFixed(2)]
                 })]
             }) : (0, n.jsxs)(n.Fragment, {
                 children: [(0, n.jsxs)("div", {

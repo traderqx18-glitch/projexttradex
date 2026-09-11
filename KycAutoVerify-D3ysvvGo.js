@@ -271,7 +271,7 @@ function ue({
         }), (0, e.jsx)(Z, {
             hint: u.hint,
             facing: u.facing,
-            preview: c[u.key] ? .url ? ? null,
+            preview: c[u.key] ?.url ?? null,
             aspect: "card",
             disabled: !!f,
             onCapture: O
@@ -351,7 +351,7 @@ function Z({
                     className: "hidden",
                     disabled: x,
                     onChange: s => {
-                        const o = s.target.files ? .[0];
+                        const o = s.target.files ?.[0];
                         s.target.value = "", o && b(o)
                     }
                 })]
@@ -363,7 +363,7 @@ function Z({
                     className: "hidden",
                     disabled: x,
                     onChange: s => {
-                        const o = s.target.files ? .[0];
+                        const o = s.target.files ?.[0];
                         s.target.value = "", o && b(o)
                     }
                 })]

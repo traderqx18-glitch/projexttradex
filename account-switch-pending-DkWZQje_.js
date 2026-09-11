@@ -16,7 +16,7 @@ function f(n) {
 }
 
 function o(n) {
-    return f(n) ? ? n
+    return f(n) ?? n
 }
 export {
     l as n, o as t

@@ -17,7 +17,7 @@ function F(e, t, {
     checkForDefaultPrevented: n = !0
 } = {}) {
     return function(o) {
-        if (e ? .(o), n === !1 || !o.defaultPrevented) return t ? .(o)
+        if (e ?.(o), n === !1 || !o.defaultPrevented) return t ?.(o)
     }
 }
 var r = S(w(), 1),
@@ -58,7 +58,7 @@ function H(e, t = []) {
                 scope: v,
                 children: C,
                 ...p
-            } = d, x = v ? .[e] ? .[a] || u, y = r.useMemo(() => p, Object.values(p));
+            } = d, x = v ?.[e] ?.[a] || u, y = r.useMemo(() => p, Object.values(p));
             return (0, m.jsx)(x.Provider, {
                 value: y,
                 children: C
@@ -67,7 +67,7 @@ function H(e, t = []) {
         l.displayName = c + "Provider";
 
         function f(d, v) {
-            const C = v ? .[e] ? .[a] || u,
+            const C = v ?.[e] ?.[a] || u,
                 p = r.useContext(C);
             if (p) return p;
             if (i !== void 0) return i;
@@ -78,7 +78,7 @@ function H(e, t = []) {
     const o = () => {
         const c = n.map(i => r.createContext(i));
         return function(u) {
-            const a = u ? .[e] || c;
+            const a = u ?.[e] || c;
             return r.useMemo(() => ({
                 [`__scope${e}`]: { ...u,
                     [e]: a
@@ -179,9 +179,9 @@ function O(e, t) {
 }
 
 function M(e) {
-    let t = Object.getOwnPropertyDescriptor(e.props, "ref") ? .get,
+    let t = Object.getOwnPropertyDescriptor(e.props, "ref") ?.get,
         n = t && "isReactWarning" in t && t.isReactWarning;
-    return n ? e.ref : (t = Object.getOwnPropertyDescriptor(e, "ref") ? .get, n = t && "isReactWarning" in t && t.isReactWarning, n ? e.props.ref : e.props.ref || e.ref)
+    return n ? e.ref : (t = Object.getOwnPropertyDescriptor(e, "ref") ?.get, n = t && "isReactWarning" in t && t.isReactWarning, n ? e.props.ref : e.props.ref || e.ref)
 }
 var Z = ["a", "button", "div", "form", "h2", "h3", "img", "input", "label", "li", "nav", "ol", "p", "select", "span", "svg", "ul"].reduce((e, t) => {
     const n = P(`Primitive.${t}`),
@@ -207,16 +207,16 @@ function G(e) {
     const t = r.useRef(e);
     return r.useEffect(() => {
         t.current = e
-    }), r.useMemo(() => (...n) => t.current ? .(...n), [])
+    }), r.useMemo(() => (...n) => t.current ?.(...n), [])
 }
-var h = globalThis ? .document ? r.useLayoutEffect : () => {},
+var h = globalThis ?.document ? r.useLayoutEffect : () => {},
     N = r[" useId ".trim().toString()] || (() => {}),
     D = 0;
 
 function J(e) {
     const [t, n] = r.useState(N());
     return h(() => {
-        e || n(s => s ? ? String(D++))
+        e || n(s => s ?? String(D++))
     }, [e]), e || (t ? `radix-${t}` : "")
 }
 var V = r[" useInsertionEffect ".trim().toString()] || h;
@@ -240,7 +240,7 @@ function K({
     return [a, r.useCallback(l => {
         if (u) {
             const f = A(l) ? l(e) : l;
-            f !== e && i.current ? .(f)
+            f !== e && i.current ?.(f)
         } else c(l)
     }, [u, e, c, i])]
 }
@@ -253,7 +253,7 @@ function W({
     return V(() => {
         c.current = t
     }, [t]), r.useEffect(() => {
-        o.current !== n && (c.current ? .(n), o.current = n)
+        o.current !== n && (c.current ?.(n), o.current = n)
     }, [n, o]), [n, s, c]
 }
 

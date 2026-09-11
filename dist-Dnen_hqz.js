@@ -102,7 +102,7 @@ var X = "PopperAnchor",
         } = e, r = I(X, t), c = d.useRef(null), s = W(i, c), a = d.useRef(null);
         return d.useEffect(() => {
             const p = a.current;
-            a.current = n ? .current || c.current, p !== a.current && r.onAnchorChange(a.current)
+            a.current = n ?.current || c.current, p !== a.current && r.onAnchorChange(a.current)
         }), n ? null : (0, l.jsx)(C.div, { ...o,
             ref: s
         })
@@ -126,7 +126,7 @@ var R = "PopperContent",
             updatePositionStrategy: h = "optimized",
             onPlaced: u,
             ...O
-        } = e, Z = I(R, t), [A, L] = d.useState(null), U = W(i, w => L(w)), [S, G] = d.useState(null), z = ze(S), J = z ? .width ? ? 0, E = z ? .height ? ? 0, K = n + (r !== "center" ? "-" + r : ""), Q = typeof f == "number" ? f : {
+        } = e, Z = I(R, t), [A, L] = d.useState(null), U = W(i, w => L(w)), [S, G] = d.useState(null), z = ze(S), J = z ?.width ?? 0, E = z ?.height ?? 0, K = n + (r !== "center" ? "-" + r : ""), Q = typeof f == "number" ? f : {
             top: 0,
             right: 0,
             bottom: 0,
@@ -185,11 +185,11 @@ var R = "PopperContent",
             })]
         }), [j, te] = q(re), H = me(u);
         b(() => {
-            y && H ? .()
+            y && H ?.()
         }, [y, H]);
-        const oe = g.arrow ? .x,
-            ne = g.arrow ? .y,
-            ae = g.arrow ? .centerOffset !== 0,
+        const oe = g.arrow ?.x,
+            ne = g.arrow ?.y,
+            ae = g.arrow ?.centerOffset !== 0,
             [ie, se] = d.useState();
         return b(() => {
             A && se(window.getComputedStyle(A).zIndex)
@@ -200,8 +200,8 @@ var R = "PopperContent",
                 transform: y ? $.transform : "translate(0, -200%)",
                 minWidth: "max-content",
                 zIndex: ie,
-                "--radix-popper-transform-origin": [g.transformOrigin ? .x, g.transformOrigin ? .y].join(" "),
-                ...g.hide ? .referenceHidden && {
+                "--radix-popper-transform-origin": [g.transformOrigin ?.x, g.transformOrigin ?.y].join(" "),
+                ...g.hide ?.referenceHidden && {
                     visibility: "hidden",
                     pointerEvents: "none"
                 }
@@ -281,11 +281,11 @@ var We = e => ({
             placement: t,
             rects: n,
             middlewareData: o
-        } = i, r = o.arrow ? .centerOffset !== 0, c = r ? 0 : e.arrowWidth, s = r ? 0 : e.arrowHeight, [a, p] = q(t), f = {
+        } = i, r = o.arrow ?.centerOffset !== 0, c = r ? 0 : e.arrowWidth, s = r ? 0 : e.arrowHeight, [a, p] = q(t), f = {
             start: "0%",
             center: "50%",
             end: "100%"
-        }[p], m = (o.arrow ? .x ? ? 0) + c / 2, x = (o.arrow ? .y ? ? 0) + s / 2;
+        }[p], m = (o.arrow ?.x ?? 0) + c / 2, x = (o.arrow ?.y ?? 0) + s / 2;
         let h = "",
             u = "";
         return a === "bottom" ? (h = r ? f : `${m}px`, u = `${-s}px`) : a === "top" ? (h = r ? f : `${m}px`, u = `${n.floating.height+s}px`) : a === "right" ? (h = `${-s}px`, u = r ? f : `${x}px`) : a === "left" && (h = `${n.floating.width+s}px`, u = r ? f : `${x}px`), {

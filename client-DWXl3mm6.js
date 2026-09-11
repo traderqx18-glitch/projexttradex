@@ -5,7 +5,7 @@ import {
 function z() {
     if (typeof window > "u") return;
     const o = location.hostname,
-        r = ["lovableproject.com", "lovableproject-dev.com", "lovable.app", "gpt-eng.com", "gptengineer.run"].some(e => o === e || o.endsWith("." + e)) ? o.match(new RegExp("^(?:id-preview(?:-[a-z0-9]+)?|project)--([0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})(?:-dev)?(?=\\.|$)", "i")) ? .[1] ? ? o.match(new RegExp("^([0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})(?=[.-])", "i")) ? .[1] : void 0,
+        r = ["lovableproject.com", "lovableproject-dev.com", "lovable.app", "gpt-eng.com", "gptengineer.run"].some(e => o === e || o.endsWith("." + e)) ? o.match(new RegExp("^(?:id-preview(?:-[a-z0-9]+)?|project)--([0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})(?:-dev)?(?=\\.|$)", "i")) ?.[1] ?? o.match(new RegExp("^([0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})(?=[.-])", "i")) ?.[1] : void 0,
         c = window.parent && window.parent !== window;
     if (!r || !c) return localStorage;
     const u = o.endsWith(".lovableproject-dev.com") || o.endsWith(".gpt-eng.com"),

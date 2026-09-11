@@ -13,7 +13,7 @@ import {
 var i = O(y(), 1);
 
 function T(n, e) {
-    return i.useReducer((t, r) => e[t][r] ? ? t, n)
+    return i.useReducer((t, r) => e[t][r] ?? t, n)
 }
 var g = n => {
     const {
@@ -51,12 +51,12 @@ function v(n) {
         if (m !== n) {
             const u = c.current,
                 d = l(o);
-            n ? s("MOUNT") : d === "none" || o ? .display === "none" ? s("UNMOUNT") : s(m && u !== d ? "ANIMATION_OUT" : "UNMOUNT"), a.current = n
+            n ? s("MOUNT") : d === "none" || o ?.display === "none" ? s("UNMOUNT") : s(m && u !== d ? "ANIMATION_OUT" : "UNMOUNT"), a.current = n
         }
     }, [n, s]), p(() => {
         if (e) {
             let o;
-            const m = e.ownerDocument.defaultView ? ? window,
+            const m = e.ownerDocument.defaultView ?? window,
                 u = f => {
                     const A = l(r.current).includes(CSS.escape(f.animationName));
                     if (f.target === e && A && (s("ANIMATION_END"), !a.current)) {
@@ -82,13 +82,13 @@ function v(n) {
 }
 
 function l(n) {
-    return n ? .animationName || "none"
+    return n ?.animationName || "none"
 }
 
 function R(n) {
-    let e = Object.getOwnPropertyDescriptor(n.props, "ref") ? .get,
+    let e = Object.getOwnPropertyDescriptor(n.props, "ref") ?.get,
         t = e && "isReactWarning" in e && e.isReactWarning;
-    return t ? n.ref : (e = Object.getOwnPropertyDescriptor(n, "ref") ? .get, t = e && "isReactWarning" in e && e.isReactWarning, t ? n.props.ref : n.props.ref || n.ref)
+    return t ? n.ref : (e = Object.getOwnPropertyDescriptor(n, "ref") ?.get, t = e && "isReactWarning" in e && e.isReactWarning, t ? n.props.ref : n.props.ref || n.ref)
 }
 export {
     g as t

@@ -287,7 +287,7 @@ var ce = 50,
                     floating: e
                 }
             });
-            l = v ? ? l, f = x ? ? f, h[w] = { ...h[w],
+            l = v ?? l, f = x ?? f, h[w] = { ...h[w],
                 ...R
             }, b && d < ce && (d++, typeof b == "object" && (b.placement && (m = b.placement), b.rects && (u = b.rects === !0 ? await s.getElementRects({
                 reference: t,
@@ -1279,7 +1279,7 @@ function Ue(t, e, n, i) {
         var w;
         l.forEach(y => {
             o && y.removeEventListener("scroll", n), r && y.removeEventListener("resize", n)
-        }), f ? .(), (w = d) == null || w.disconnect(), d = null, a && cancelAnimationFrame(h)
+        }), f ?.(), (w = d) == null || w.disconnect(), d = null, a && cancelAnimationFrame(h)
     }
 }
 var $e = me,

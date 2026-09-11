@@ -20,7 +20,7 @@ import {
 } from "./dist-iN9wdwzB.js";
 var o = H(J(), 1);
 
-function ee(e, t = globalThis ? .document) {
+function ee(e, t = globalThis ?.document) {
     const n = F(e);
     o.useEffect(() => {
         const s = i => {
@@ -52,16 +52,16 @@ var T = Y(),
             onInteractOutside: p,
             onDismiss: r,
             ...P
-        } = e, a = o.useContext(q), [l, L] = o.useState(null), y = l ? .ownerDocument ? ? globalThis ? .document, [, v] = o.useState({}), D = x(t, d => L(d)), u = Array.from(a.layers), [m] = [...a.layersWithOutsidePointerEventsDisabled].slice(-1), b = u.indexOf(m), h = l ? u.indexOf(l) : -1, E = a.layersWithOutsidePointerEventsDisabled.size > 0, f = h >= b, V = ue(d => {
+        } = e, a = o.useContext(q), [l, L] = o.useState(null), y = l ?.ownerDocument ?? globalThis ?.document, [, v] = o.useState({}), D = x(t, d => L(d)), u = Array.from(a.layers), [m] = [...a.layersWithOutsidePointerEventsDisabled].slice(-1), b = u.indexOf(m), h = l ? u.indexOf(l) : -1, E = a.layersWithOutsidePointerEventsDisabled.size > 0, f = h >= b, V = ue(d => {
             const g = d.target,
                 S = [...a.branches].some(X => X.contains(g));
-            !f || S || (i ? .(d), p ? .(d), d.defaultPrevented || r ? .())
+            !f || S || (i ?.(d), p ?.(d), d.defaultPrevented || r ?.())
         }, y), I = ae(d => {
             const g = d.target;
-            [...a.branches].some(S => S.contains(g)) || (c ? .(d), p ? .(d), d.defaultPrevented || r ? .())
+            [...a.branches].some(S => S.contains(g)) || (c ?.(d), p ?.(d), d.defaultPrevented || r ?.())
         }, y);
         return ee(d => {
-            h === a.layers.size - 1 && (s ? .(d), !d.defaultPrevented && r && (d.preventDefault(), r()))
+            h === a.layers.size - 1 && (s ?.(d), !d.defaultPrevented && r && (d.preventDefault(), r()))
         }, y), o.useEffect(() => {
             if (l) return n && (a.layersWithOutsidePointerEventsDisabled.size === 0 && (U = y.body.style.pointerEvents, y.body.style.pointerEvents = "none"), a.layersWithOutsidePointerEventsDisabled.add(l)), a.layers.add(l), k(), () => {
                 n && a.layersWithOutsidePointerEventsDisabled.size === 1 && (y.body.style.pointerEvents = U)
@@ -99,7 +99,7 @@ var oe = "DismissableLayerBranch",
     });
 ie.displayName = oe;
 
-function ue(e, t = globalThis ? .document) {
+function ue(e, t = globalThis ?.document) {
     const n = F(e),
         s = o.useRef(!1),
         i = o.useRef(() => {});
@@ -131,7 +131,7 @@ function ue(e, t = globalThis ? .document) {
     }
 }
 
-function ae(e, t = globalThis ? .document) {
+function ae(e, t = globalThis ?.document) {
     const n = F(e),
         s = o.useRef(!1);
     return o.useEffect(() => {
@@ -172,7 +172,7 @@ var N = 0;
 function Te() {
     o.useEffect(() => {
         const e = document.querySelectorAll("[data-radix-focus-guard]");
-        return document.body.insertAdjacentElement("afterbegin", e[0] ? ? M()), document.body.insertAdjacentElement("beforeend", e[1] ? ? M()), N++, () => {
+        return document.body.insertAdjacentElement("afterbegin", e[0] ?? M()), document.body.insertAdjacentElement("beforeend", e[1] ?? M()), N++, () => {
             N === 1 && document.querySelectorAll("[data-radix-focus-guard]").forEach(t => t.remove()), N--
         }
     }, [])
@@ -247,7 +247,7 @@ var _ = "focusScope.autoFocusOnMount",
                 return () => {
                     r.removeEventListener(_, a), setTimeout(() => {
                         const m = new CustomEvent(R, K);
-                        r.addEventListener(R, l), r.dispatchEvent(m), m.defaultPrevented || O(u ? ? document.body, {
+                        r.addEventListener(R, l), r.dispatchEvent(m), m.defaultPrevented || O(u ?? document.body, {
                             select: !0
                         }), r.removeEventListener(R, l), B.remove(v)
                     }, 0)
@@ -344,10 +344,10 @@ function ve() {
     return {
         add(t) {
             const n = e[0];
-            t !== n && n ? .pause(), e = j(e, t), e.unshift(t)
+            t !== n && n ?.pause(), e = j(e, t), e.unshift(t)
         },
         remove(t) {
-            e = j(e, t), e[0] ? .resume()
+            e = j(e, t), e[0] ?.resume()
         }
     }
 }
@@ -369,7 +369,7 @@ var ye = H(Q(), 1),
             ...s
         } = e, [i, c] = o.useState(!1);
         $(() => c(!0), []);
-        const p = n || i && globalThis ? .document ? .body;
+        const p = n || i && globalThis ?.document ?.body;
         return p ? ye.createPortal((0, T.jsx)(C.div, { ...s,
             ref: t
         }), p) : null

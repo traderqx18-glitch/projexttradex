@@ -183,12 +183,12 @@
             } catch {
                 return
             }
-            const n = l ? .[f || history.state ? .__TSR_key];
+            const n = l?.[f || history.state?.__TSR_key];
             let c = !1;
             for (const t in n) {
                 const e = n[t],
-                    o = e ? .scrollX,
-                    s = e ? .scrollY;
+                    o = e?.scrollX,
+                    s = e?.scrollY;
                 if (Number.isFinite(o) && Number.isFinite(s)) {
                     if (t === "window") scrollTo(o, s), c = !0;
                     else if (t) try {
@@ -200,7 +200,7 @@
             if (c) return;
             const i = location.hash.slice(1);
             if (i) {
-                const t = history.state ? .__hashScrollIntoViewOptions ? ? !0;
+                const t = history.state?.__hashScrollIntoViewOptions ?? !0;
                 if (t) {
                     const e = document.getElementById(i);
                     e && e.scrollIntoView(t)

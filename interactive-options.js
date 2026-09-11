@@ -57,9 +57,6 @@
     if (!localStorage.getItem(authKey)) {
       localStorage.setItem(authKey, JSON.stringify(defaultUserSession));
     }
-    if (!localStorage.getItem('okaybroker-funded-auth')) {
-      localStorage.setItem('okaybroker-funded-auth', JSON.stringify(defaultUserSession));
-    }
     if (!localStorage.getItem('okaybroker-affiliate-auth')) {
       localStorage.setItem('okaybroker-affiliate-auth', JSON.stringify(defaultUserSession));
     }
@@ -198,7 +195,6 @@
     initCheckboxes();
     initCountryPicker();
     initForms();
-    initBuyChallengeButtons();
     initMobileMenus();
     initDownloadButtons();
   }
@@ -212,12 +208,12 @@
 
         if (text.includes('registration') || text.includes('sign up')) {
           if (!currentPath.includes('signup')) {
-            window.location.href = currentPath.includes('/funded') ? '/funded/signup' : '/signup';
+            window.location.href = '/signup';
             return;
           }
         } else if (text.includes('sign in') || text.includes('log in')) {
           if (!currentPath.includes('signin')) {
-            window.location.href = currentPath.includes('/funded') ? '/funded/signin' : '/signin';
+            window.location.href = '/signin';
             return;
           }
         }
@@ -447,13 +443,13 @@
 
         setTimeout(function () {
           if (path.includes('signin')) {
-            showToast('Signed in successfully! Redirecting to Challenges...');
+            showToast('Signed in successfully! Redirecting to Trading Terminal...');
             localStorage.setItem('okay_auth', JSON.stringify({ loggedIn: true, time: Date.now() }));
-            setTimeout(function () { window.location.href = '/funded/pricing'; }, 1000);
+            setTimeout(function () { window.location.href = '/trade'; }, 800);
           } else if (path.includes('signup')) {
-            showToast('Account registered successfully! Redirecting to Challenges...');
+            showToast('Account registered successfully! Redirecting to Trading Terminal...');
             localStorage.setItem('okay_auth', JSON.stringify({ loggedIn: true, time: Date.now() }));
-            setTimeout(function () { window.location.href = '/funded/pricing'; }, 1000);
+            setTimeout(function () { window.location.href = '/trade'; }, 800);
           } else if (path.includes('contact')) {
             showSuccessBanner(form, 'Message sent successfully! Our support desk will reply within 24 hours.');
             form.reset();
@@ -479,145 +475,7 @@
     });
   }
 
-  // 6. BUY CHALLENGE BUTTONS & MODAL
-  function initBuyChallengeButtons() {
-    document.querySelectorAll('[data-buy-challenge]').forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        var size = btn.getAttribute('data-buy-challenge') || '$25K';
-        var price = btn.getAttribute('data-price') || '159';
-        openChallengeCheckout(size, price);
-      });
-    });
-  }
-
-  function openChallengeCheckout(size, price) {
-    var existing = document.getElementById('checkout-modal-overlay');
-    if (existing) existing.remove();
-
-    var overlay = document.createElement('div');
-    overlay.id = 'checkout-modal-overlay';
-    overlay.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-md';
-
-    var modal = document.createElement('div');
-    modal.className = 'w-full max-w-lg rounded-3xl border border-border bg-panel p-6 sm:p-8 shadow-2xl';
-
-    modal.innerHTML = `
-      <div class="flex items-center justify-between pb-4 border-b border-border">
-        <div>
-          <div class="text-xs font-bold uppercase tracking-widest text-primary">Okay Broker Funded</div>
-          <h3 class="text-2xl font-black text-foreground mt-0.5">${size} Challenge Checkout</h3>
-        </div>
-        <button id="close-checkout" class="text-muted-foreground hover:text-foreground p-1.5 rounded-lg hover:bg-panel-2 cursor-pointer">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-      </div>
-
-      <div class="mt-5 rounded-2xl bg-panel-2/60 border border-border p-4 space-y-2 text-sm">
-        <div class="flex justify-between text-muted-foreground">
-          <span>Account Capital</span>
-          <span class="font-bold text-foreground">${size} USD</span>
-        </div>
-        <div class="flex justify-between text-muted-foreground">
-          <span>Target / Max Loss</span>
-          <span class="font-bold text-foreground">8% / 10%</span>
-        </div>
-        <div class="flex justify-between text-muted-foreground">
-          <span>Profit Split</span>
-          <span class="font-bold text-emerald-400">Up to 90%</span>
-        </div>
-        <div class="h-px bg-border my-2"></div>
-        <div class="flex justify-between items-center text-base">
-          <span class="font-bold text-foreground">Total Fee (Refundable)</span>
-          <span class="font-black text-2xl text-primary">$${price}</span>
-        </div>
-      </div>
-
-      <div class="mt-5 space-y-3">
-        <label class="block text-xs font-bold uppercase tracking-wider text-muted-foreground">Select Payment Method</label>
-        <div class="grid grid-cols-3 gap-2">
-          <button type="button" class="pay-method-btn flex flex-col items-center justify-center p-3 rounded-xl border border-primary bg-primary/10 text-xs font-bold text-foreground">
-            <span class="text-base mb-1">🪙</span> USDT (TRC20)
-          </button>
-          <button type="button" class="pay-method-btn flex flex-col items-center justify-center p-3 rounded-xl border border-border bg-panel-2 text-xs font-bold text-muted-foreground hover:text-foreground hover:border-border/80">
-            <span class="text-base mb-1">₿</span> Bitcoin
-          </button>
-          <button type="button" class="pay-method-btn flex flex-col items-center justify-center p-3 rounded-xl border border-border bg-panel-2 text-xs font-bold text-muted-foreground hover:text-foreground hover:border-border/80">
-            <span class="text-base mb-1">💳</span> Card / Bank
-          </button>
-        </div>
-      </div>
-
-      <div class="mt-4">
-        <label class="block text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Your Email for Credentials</label>
-        <input id="checkout-email" type="email" placeholder="trader@example.com" class="w-full rounded-xl border border-border bg-panel-2 px-4 py-3 text-sm text-foreground outline-none focus:border-primary" />
-      </div>
-
-      <button id="submit-checkout" class="mt-6 w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm shadow-lg shadow-primary/25 hover:opacity-90 transition cursor-pointer flex items-center justify-center gap-2">
-        <span>Proceed to Challenge Payment ($${price})</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-      </button>
-    `;
-
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    modal.querySelectorAll('.pay-method-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        modal.querySelectorAll('.pay-method-btn').forEach(function (b) {
-          b.classList.remove('border-primary', 'bg-primary/10', 'text-foreground');
-          b.classList.add('border-border', 'bg-panel-2', 'text-muted-foreground');
-        });
-        btn.classList.add('border-primary', 'bg-primary/10', 'text-foreground');
-        btn.classList.remove('border-border', 'bg-panel-2', 'text-muted-foreground');
-      });
-    });
-
-    var submitBtn = modal.querySelector('#submit-checkout');
-    submitBtn.addEventListener('click', function () {
-      var emailInput = modal.querySelector('#checkout-email');
-      var email = (emailInput.value || '').trim();
-      if (!email || !email.includes('@')) {
-        emailInput.focus();
-        emailInput.classList.add('border-red-500');
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Activating Challenge Account...';
-
-      setTimeout(function () {
-        modal.innerHTML = `
-          <div class="text-center py-6 space-y-4">
-            <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center text-3xl">
-              ✓
-            </div>
-            <h3 class="text-2xl font-black text-foreground">Challenge Order Confirmed!</h3>
-            <p class="text-sm text-muted-foreground max-w-sm mx-auto">
-              Your ${size} evaluation account has been provisioned. We have sent the trading credentials and activation link to <strong class="text-foreground">${email}</strong>.
-            </p>
-            <div class="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
-              <a href="/funded/signin" class="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-bold text-sm">
-                Login to Funded Dashboard
-              </a>
-              <button id="finish-checkout" class="px-6 py-3 rounded-xl bg-panel-2 border border-border text-foreground font-bold text-sm">
-                Close
-              </button>
-            </div>
-          </div>
-        `;
-        var finish = modal.querySelector('#finish-checkout');
-        if (finish) finish.addEventListener('click', function () { overlay.remove(); });
-      }, 1200);
-    });
-
-    modal.querySelector('#close-checkout').addEventListener('click', function () { overlay.remove(); });
-    overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) overlay.remove();
-    });
-  }
-
-  // 7. MOBILE NAVIGATION DRAWER
+  // 6. MOBILE NAVIGATION DRAWER
   function initMobileMenus() {
     document.querySelectorAll('button[aria-label="Open menu"]').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
@@ -647,13 +505,11 @@
       </div>
       <nav class="flex flex-col gap-3 mt-6 text-sm font-semibold">
         <a href="/" class="py-2 px-3 rounded-lg hover:bg-panel-2 transition">Home</a>
-        <a href="/funded/pricing" class="py-2 px-3 rounded-lg hover:bg-panel-2 transition text-primary font-bold">Funded Challenges</a>
-        <a href="/funded/rules" class="py-2 px-3 rounded-lg hover:bg-panel-2 transition">Trading Rules</a>
+        <a href="/trade" class="py-2 px-3 rounded-lg hover:bg-panel-2 transition text-primary font-bold">Trade Terminal</a>
         <a href="/services" class="py-2 px-3 rounded-lg hover:bg-panel-2 transition">Services & Markets</a>
         <a href="/about" class="py-2 px-3 rounded-lg hover:bg-panel-2 transition">About Us</a>
         <a href="/trust" class="py-2 px-3 rounded-lg hover:bg-panel-2 transition">Trust & Security</a>
         <a href="/download" class="py-2 px-3 rounded-lg hover:bg-panel-2 transition">Download App</a>
-        <a href="/funded/help" class="py-2 px-3 rounded-lg hover:bg-panel-2 transition">Help & FAQ</a>
         <a href="/contact" class="py-2 px-3 rounded-lg hover:bg-panel-2 transition">Contact Support</a>
       </nav>
       <div class="mt-auto pt-6 border-t border-border flex flex-col gap-3">
